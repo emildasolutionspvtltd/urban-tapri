@@ -1,0 +1,1063 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: >-
+              Original text: Savor the Authentic Flavors of South India in
+              Rotterdam, key: e24a3fe
+            label: Text
+            name: e24a3fe
+            widget: string
+          - hint: >-
+              Original text: Experience the richness of traditional South Indian
+              cuisine with Urban Tapri’s delectable takeaway menu!, key:
+              4ec4fcf6
+            label: Text
+            name: 4ec4fcf6
+            widget: text
+          - hint: 'Original text: Explore Our Menu, key: -16fac300'
+            label: Text
+            name: '-16fac300'
+            widget: string
+          - hint: 'Original text: Discover the Urban Tapri Difference, key: cf5ad77'
+            label: Text
+            name: cf5ad77
+            widget: string
+          - hint: 'Original text: Authentic Flavors, key: -5a7ccd2e'
+            label: Text
+            name: '-5a7ccd2e'
+            widget: string
+          - hint: >-
+              Original text: Delight in meals that embody the vibrant and
+              diverse tastes of South Indian cuisine, meticulously prepared to
+              offer an authentic dining experience., key: -7182a7be
+            label: Text
+            name: '-7182a7be'
+            widget: text
+          - hint: 'Original text: Quality Ingredients, key: 6f221ee1'
+            label: Text
+            name: 6f221ee1
+            widget: string
+          - hint: >-
+              Original text: Indulge in dishes crafted with the finest, fresh
+              ingredients, ensuring each bite is not only flavourful but also
+              wholesome and satisfying., key: 332c5e82
+            label: Text
+            name: 332c5e82
+            widget: text
+          - hint: 'Original text: Quick Takeaway Service, key: 4684337d'
+            label: Text
+            name: 4684337d
+            widget: string
+          - hint: >-
+              Original text: Relish hot and delicious South Indian favourites,
+              conveniently packed for you to enjoy on the go, with our swift and
+              efficient takeaway services., key: -77b68adc
+            label: Text
+            name: '-77b68adc'
+            widget: text
+          - hint: 'Original text: menu, key: 33155f'
+            label: Text
+            name: 33155f
+            widget: string
+          - hint: 'Original text: Feast Your Eyes on Our Menu, key: 1a86f186'
+            label: Text
+            name: 1a86f186
+            widget: string
+          - hint: >-
+              Original text: Culinary Symphony: Our Signature South Indian
+              Delights, key: -4194ff00
+            label: Text
+            name: '-4194ff00'
+            widget: string
+          - hint: 'Original text: Main Course, key: -1f205b9e'
+            label: Text
+            name: '-1f205b9e'
+            widget: string
+          - hint: 'Original text: 1., key: 61d'
+            label: Text
+            name: 61d
+            widget: string
+          - hint: 'Original text: Samosas, key: -2da082ab'
+            label: Text
+            name: '-2da082ab'
+            widget: string
+          - hint: 'Original text: ........................., key: 7a4d3b2e'
+            label: Text
+            name: 7a4d3b2e
+            widget: string
+          - hint: 'Original text: € 5, key: 7aa9c1'
+            label: Text
+            name: 7aa9c1
+            widget: string
+          - hint: 'Original text: 2., key: 63c'
+            label: Text
+            name: 63c
+            widget: string
+          - hint: 'Original text: Vada pav, key: -5f12b6f3'
+            label: Text
+            name: '-5f12b6f3'
+            widget: string
+          - hint: 'Original text: € 4.5, key: -3388c079'
+            label: Text
+            name: '-3388c079'
+            widget: string
+          - hint: 'Original text: 3., key: 65b'
+            label: Text
+            name: 65b
+            widget: string
+          - hint: 'Original text: Pyaaz Poha, key: -5b0d8379'
+            label: Text
+            name: '-5b0d8379'
+            widget: string
+          - hint: 'Original text: 4., key: 67a'
+            label: Text
+            name: 67a
+            widget: string
+          - hint: 'Original text: Veg Biryani, key: 66830586'
+            label: Text
+            name: '66830586'
+            widget: string
+          - hint: 'Original text: € 12, key: eda8e15'
+            label: Text
+            name: eda8e15
+            widget: string
+          - hint: 'Original text: 5., key: 699'
+            label: Text
+            name: '699'
+            widget: string
+          - hint: 'Original text: Pav bhaji, key: 5004d3ff'
+            label: Text
+            name: 5004d3ff
+            widget: string
+          - hint: 'Original text: € 8, key: 7aa9c4'
+            label: Text
+            name: 7aa9c4
+            widget: string
+          - hint: 'Original text: 6., key: 6b8'
+            label: Text
+            name: 6b8
+            widget: string
+          - hint: 'Original text: Tawa pulav, key: -181455cd'
+            label: Text
+            name: '-181455cd'
+            widget: string
+          - hint: 'Original text: 7., key: 6d7'
+            label: Text
+            name: 6d7
+            widget: string
+          - hint: 'Original text: Wraps, key: 4ff4949'
+            label: Text
+            name: 4ff4949
+            widget: string
+          - hint: 'Original text: € 6.5, key: -3388b8f7'
+            label: Text
+            name: '-3388b8f7'
+            widget: string
+          - hint: 'Original text: 8., key: 6f6'
+            label: Text
+            name: 6f6
+            widget: string
+          - hint: 'Original text: Fried rice / schezwan rice, key: 1dc3762e'
+            label: Text
+            name: 1dc3762e
+            widget: string
+          - hint: 'Original text: .., key: 5c0'
+            label: Text
+            name: 5c0
+            widget: string
+          - hint: 'Original text: € 10.5, key: -3d90a4e6'
+            label: Text
+            name: '-3d90a4e6'
+            widget: string
+          - hint: 'Original text: 9., key: 715'
+            label: Text
+            name: '715'
+            widget: string
+          - hint: 'Original text: Schezwan Noodles, key: -3ddb2b25'
+            label: Text
+            name: '-3ddb2b25'
+            widget: string
+          - hint: 'Original text: .............., key: -652707c0'
+            label: Text
+            name: '-652707c0'
+            widget: string
+          - hint: 'Original text: € 11.5, key: -3d90a125'
+            label: Text
+            name: '-3d90a125'
+            widget: string
+          - hint: 'Original text: 10., key: bdef'
+            label: Text
+            name: bdef
+            widget: string
+          - hint: 'Original text: Soya chaap chilly, key: -3a0b2c1a'
+            label: Text
+            name: '-3a0b2c1a'
+            widget: string
+          - hint: 'Original text: .................., key: 193873c0'
+            label: Text
+            name: 193873c0
+            widget: string
+          - hint: 'Original text: € 11, key: eda8e14'
+            label: Text
+            name: eda8e14
+            widget: string
+          - hint: 'Original text: 11., key: be0e'
+            label: Text
+            name: be0e
+            widget: string
+          - hint: 'Original text: Paneer chilly, key: -2497ffe0'
+            label: Text
+            name: '-2497ffe0'
+            widget: string
+          - hint: 'Original text: 12., key: be2d'
+            label: Text
+            name: be2d
+            widget: string
+          - hint: 'Original text: Misal pav, key: -5d1a5bd9'
+            label: Text
+            name: '-5d1a5bd9'
+            widget: string
+          - hint: 'Original text: € 7, key: 7aa9c3'
+            label: Text
+            name: 7aa9c3
+            widget: string
+          - hint: 'Original text: 13., key: be4c'
+            label: Text
+            name: be4c
+            widget: string
+          - hint: 'Original text: Chhole bhatura, key: 32e45170'
+            label: Text
+            name: '32e45170'
+            widget: string
+          - hint: 'Original text: ................., key: -38fe2dd2'
+            label: Text
+            name: '-38fe2dd2'
+            widget: string
+          - hint: 'Original text: € 13.5, key: -3d9099a3'
+            label: Text
+            name: '-3d9099a3'
+            widget: string
+          - hint: 'Original text: Chaat, key: 3e0e5af'
+            label: Text
+            name: 3e0e5af
+            widget: string
+          - hint: 'Original text: Dal/dahi kachori, key: 47ffc389'
+            label: Text
+            name: 47ffc389
+            widget: string
+          - hint: 'Original text: ..........., key: -38782492'
+            label: Text
+            name: '-38782492'
+            widget: string
+          - hint: 'Original text: € 6, key: 7aa9c2'
+            label: Text
+            name: 7aa9c2
+            widget: string
+          - hint: 'Original text: Pani puri, key: 21c69f10'
+            label: Text
+            name: 21c69f10
+            widget: string
+          - hint: 'Original text: € 5.5, key: -3388bcb8'
+            label: Text
+            name: '-3388bcb8'
+            widget: string
+          - hint: 'Original text: Sev puri, key: 582a6558'
+            label: Text
+            name: 582a6558
+            widget: string
+          - hint: 'Original text: Dahi puri, key: -ed3f882'
+            label: Text
+            name: '-ed3f882'
+            widget: string
+          - hint: 'Original text: Papdi chat, key: 56728cb4'
+            label: Text
+            name: 56728cb4
+            widget: string
+          - hint: 'Original text: Samosa chaat, key: 27d42a0d'
+            label: Text
+            name: 27d42a0d
+            widget: string
+          - hint: 'Original text: ...................., key: -53157680'
+            label: Text
+            name: '-53157680'
+            widget: string
+          - hint: 'Original text: Bhel puri(sukha), key: -2af86900'
+            label: Text
+            name: '-2af86900'
+            widget: string
+          - hint: 'Original text: ..............., key: -3fb9f012'
+            label: Text
+            name: '-3fb9f012'
+            widget: string
+          - hint: 'Original text: Matar kachori, key: 7931691c'
+            label: Text
+            name: 7931691c
+            widget: string
+          - hint: 'Original text: View all, key: 4b09c9c6'
+            label: Text
+            name: 4b09c9c6
+            widget: string
+          - hint: 'Original text: Our Story, key: 4f142e1'
+            label: Text
+            name: 4f142e1
+            widget: string
+          - hint: 'Original text: The Essence of Urban Tapri, key: 3bd84fe2'
+            label: Text
+            name: 3bd84fe2
+            widget: string
+          - hint: >-
+              Original text: Welcome to Urban Tapri, your go-to destination for
+              authentic South Indian delights in the heart of Rotterdam! Nestled
+              amidst the bustling cityscape, our restaurant is a culinary oasis
+              where age-old traditions meet contemporary flavors. At Urban
+              Tapri, we take immense pride in serving dishes that are steeped in
+              tradition, offering a symphony of taste that dances on the palate
+              with every bite. Our journey began with a passion for the rich and
+              diverse cuisine of South India, a tapestry of flavors that is as
+              vibrant and colorful as the region itself. With a menu
+              meticulously crafted by our expert chefs, each dish is a
+              celebration of the aromatic spices and tantalizing ingredients
+              that are quintessential to South Indian cooking. As a takeaway
+              restaurant, we understand the importance of convenience without
+              compromising on taste. Therefore, we strive to bring the warmth
+              and joy of a hearty South Indian meal right to your doorstep,
+              allowing you to savor the magic of our cuisine wherever you
+              please. At Urban Tapri, every meal is a journey, and we invite you
+              to join us on this delightful adventure of taste and tradition!,
+              key: -5dc3f22
+            label: Text
+            name: '-5dc3f22'
+            widget: text
+          - hint: 'Original text: Email, key: 3ff5b7c'
+            label: Text
+            name: 3ff5b7c
+            widget: string
+          - hint: >-
+              Original text: Contact us via email for inquiries, reservations,
+              and feedback., key: 3a4e27fb
+            label: Text
+            name: 3a4e27fb
+            widget: string
+          - hint: 'Original text: hello@urbantapri.io, key: 502ebdde'
+            label: Text
+            name: 502ebdde
+            widget: string
+          - hint: 'Original text: Phone, key: 4984d4e'
+            label: Text
+            name: 4984d4e
+            widget: string
+          - hint: >-
+              Original text: Reach us by phone for assistance with orders and
+              questions., key: -3785f34a
+            label: Text
+            name: '-3785f34a'
+            widget: string
+          - hint: 'Original text: 0613175708, key: -29168c08'
+            label: Text
+            name: '-29168c08'
+            widget: string
+          - hint: 'Original text: Office, key: -7363d524'
+            label: Text
+            name: '-7363d524'
+            widget: string
+          - hint: >-
+              Original text: Visit our culinary oasis for a memorable dining
+              experience., key: 7aa1b044
+            label: Text
+            name: 7aa1b044
+            widget: string
+          - hint: 'Original text: Pompenberg 638, 3011AX, Rotterdam, key: 74193b0c'
+            label: Text
+            name: 74193b0c
+            widget: string
+          - hint: 'Original text: Feel Free to Kind, key: -6950b741'
+            label: Text
+            name: '-6950b741'
+            widget: string
+          - hint: 'Original text: Contact us, key: 7f274abe'
+            label: Text
+            name: 7f274abe
+            widget: string
+          - hint: >-
+              Original text: Get in Touch with Us for reservations, key:
+              2a16f4b8
+            label: Text
+            name: 2a16f4b8
+            widget: string
+          - hint: 'Original text: I accept the Terms, key: -57514129'
+            label: Text
+            name: '-57514129'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: "Original text: Resturant \_Policy, key: 26193288"
+            label: Text
+            name: '26193288'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: >-
+              Original text: © 2023 Urban Tapri. All rights reserved., key:
+              7d841f70
+            label: Text
+            name: 7d841f70
+            widget: string
+          - hint: 'Original text: Designed & Developed By , key: 8fb4268'
+            label: Text
+            name: 8fb4268
+            widget: string
+          - hint: 'Original text: Emilda Solutions, key: -7c9b8a7e'
+            label: Text
+            name: '-7c9b8a7e'
+            widget: string
+          - hint: 'Original text: ........................, key: -46609b00'
+            label: Text
+            name: '-46609b00'
+            widget: string
+          - hint: 'Original text: ..................., key: dd6046e'
+            label: Text
+            name: dd6046e
+            widget: string
+          - hint: 'Original text: ........, key: 7cf17700'
+            label: Text
+            name: 7cf17700
+            widget: string
+          - hint: 'Original text: ......................, key: 1c6e2f40'
+            label: Text
+            name: 1c6e2f40
+            widget: string
+          - hint: 'Original text: ............, key: 29739280'
+            label: Text
+            name: '29739280'
+            widget: string
+          - hint: 'Original text: 14., key: be6b'
+            label: Text
+            name: be6b
+            widget: string
+          - hint: 'Original text: Dry fry w/jeera rice, key: 51e9c500'
+            label: Text
+            name: 51e9c500
+            widget: string
+          - hint: 'Original text: .........., key: 66fbcc0'
+            label: Text
+            name: 66fbcc0
+            widget: string
+          - hint: 'Original text: € 12.5, key: -3d909d64'
+            label: Text
+            name: '-3d909d64'
+            widget: string
+          - hint: 'Original text: ....................., key: -f995952'
+            label: Text
+            name: '-f995952'
+            widget: string
+          - hint: 'Original text: ................, key: 487bee00'
+            label: Text
+            name: 487bee00
+            widget: string
+          - hint: 'Original text: Sweets, key: -6ba1645d'
+            label: Text
+            name: '-6ba1645d'
+            widget: string
+          - hint: 'Original text: Gulab jamun, key: 56f0598e'
+            label: Text
+            name: 56f0598e
+            widget: string
+          - hint: 'Original text: € 4, key: 7aa9c0'
+            label: Text
+            name: 7aa9c0
+            widget: string
+          - hint: 'Original text: Rasmalai, key: 1bc7ddfc'
+            label: Text
+            name: 1bc7ddfc
+            widget: string
+          - hint: 'Original text: Kulfi, key: 457b465'
+            label: Text
+            name: 457b465
+            widget: string
+          - hint: "Original text: South \_Indian section, key: 64aae229"
+            label: Text
+            name: 64aae229
+            widget: string
+          - hint: 'Original text: Sada butter dosa, key: 4862c504'
+            label: Text
+            name: 4862c504
+            widget: string
+          - hint: 'Original text: € 8.5, key: -3388b175'
+            label: Text
+            name: '-3388b175'
+            widget: string
+          - hint: 'Original text: Masala dosa, key: 4846a6a2'
+            label: Text
+            name: 4846a6a2
+            widget: string
+          - hint: 'Original text: € 9.5, key: -3388adb4'
+            label: Text
+            name: '-3388adb4'
+            widget: string
+          - hint: 'Original text: Cheese dosa, key: 223f65a2'
+            label: Text
+            name: 223f65a2
+            widget: string
+          - hint: 'Original text: € 10, key: eda8e13'
+            label: Text
+            name: eda8e13
+            widget: string
+          - hint: 'Original text: Mysore masala dosa, key: 145bb37d'
+            label: Text
+            name: 145bb37d
+            widget: string
+          - hint: 'Original text: ......, key: 511cc140'
+            label: Text
+            name: 511cc140
+            widget: string
+          - hint: 'Original text: Podi dosa, key: -40ecc82b'
+            label: Text
+            name: '-40ecc82b'
+            widget: string
+          - hint: 'Original text: ......................., key: 7157b8ee'
+            label: Text
+            name: 7157b8ee
+            widget: string
+          - hint: 'Original text: Mixed vegetable uttapam, key: -5d2b4234'
+            label: Text
+            name: '-5d2b4234'
+            widget: string
+          - hint: 'Original text: ..., key: b26e'
+            label: Text
+            name: b26e
+            widget: string
+          - hint: 'Original text: Onion uttapam, key: -6e4d97a7'
+            label: Text
+            name: '-6e4d97a7'
+            widget: string
+          - hint: 'Original text: Onion tomato uttapam, key: 12dc511'
+            label: Text
+            name: 12dc511
+            widget: string
+          - hint: 'Original text: € 9, key: 7aa9c5'
+            label: Text
+            name: 7aa9c5
+            widget: string
+          - hint: 'Original text: Idli, key: 22b3f8'
+            label: Text
+            name: 22b3f8
+            widget: string
+          - hint: 'Original text: Medu wada, key: 7fcbe3e'
+            label: Text
+            name: 7fcbe3e
+            widget: string
+          - hint: "Original text: South Indian combo \_- idli, vada, dosa, key: -eb687b4"
+            label: Text
+            name: '-eb687b4'
+            widget: string
+          - hint: 'Original text: ...., key: 159b80'
+            label: Text
+            name: 159b80
+            widget: string
+          - hint: 'Original text: €13.5, key: -338109eb'
+            label: Text
+            name: '-338109eb'
+            widget: string
+          - hint: >-
+              Original text: Chinese combo - Fried rice/noodles paneer chilly,
+              key: 3731730a
+            label: Text
+            name: 3731730a
+            widget: string
+          - hint: 'Original text: €15, key: 7aabd0'
+            label: Text
+            name: 7aabd0
+            widget: string
+          - hint: 'Original text: Beverages, key: 4a6837b4'
+            label: Text
+            name: 4a6837b4
+            widget: string
+          - hint: 'Original text: Mango lassi, key: 62ce676'
+            label: Text
+            name: 62ce676
+            widget: string
+          - hint: 'Original text: € 3, key: 7aa9bf'
+            label: Text
+            name: 7aa9bf
+            widget: string
+          - hint: 'Original text: Masalachai, key: 1b398fc4'
+            label: Text
+            name: 1b398fc4
+            widget: string
+          - hint: 'Original text: € 3.5, key: -3388c43a'
+            label: Text
+            name: '-3388c43a'
+            widget: string
+          - hint: 'Original text: Filtercoffee, key: -5c087a9c'
+            label: Text
+            name: '-5c087a9c'
+            widget: string
+          - hint: 'Original text: Pinkchai, key: -156c321d'
+            label: Text
+            name: '-156c321d'
+            widget: string
+          - hint: 'Original text: Jaljeera, key: -2f5c029c'
+            label: Text
+            name: '-2f5c029c'
+            widget: string
+          - hint: 'Original text: Heineken, key: -306b862f'
+            label: Text
+            name: '-306b862f'
+            widget: string
+          - hint: 'Original text: Morebeers, key: -1c53dc12'
+            label: Text
+            name: '-1c53dc12'
+            widget: string
+          - hint: 'Original text: Sprite, key: -6bfe111b'
+            label: Text
+            name: '-6bfe111b'
+            widget: string
+          - hint: 'Original text: Coke, key: 2022e6'
+            label: Text
+            name: '2022e6'
+            widget: string
+          - hint: 'Original text: Veg, key: 14f78'
+            label: Text
+            name: 14f78
+            widget: string
+          - hint: 'Original text: Schezwan, key: -25b502e9'
+            label: Text
+            name: '-25b502e9'
+            widget: string
+          - hint: 'Original text: Cheese, key: 783db0f7'
+            label: Text
+            name: 783db0f7
+            widget: string
+          - hint: 'Original text: Paneer, key: -71f1ddcb'
+            label: Text
+            name: '-71f1ddcb'
+            widget: string
+          - hint: 'Original text: Mayonnaise, key: 7337da84'
+            label: Text
+            name: 7337da84
+            widget: string
+          - hint: 'Original text: Paneer Kathi roll, key: -7251e877'
+            label: Text
+            name: '-7251e877'
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /menu-page/, key: -4a1d8ff'
+            label: Link
+            name: '-4a1d8ff'
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i46a10c6f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i384b45e8
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 43d89fbc
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 40358e1b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i31255182
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1f838f51
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5a2476c3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-33466aec'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 72403bb5
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: c8a503c
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 46a0a863
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 47b87823
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7922fd83
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5ae753be
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1f91a6d2
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3ae5861c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
